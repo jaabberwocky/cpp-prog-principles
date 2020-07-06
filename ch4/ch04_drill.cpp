@@ -1,42 +1,63 @@
 #include "../text_lib/std_lib_facilities.h"
 
-bool is_smallest(double a, double smallest) {
+bool is_smallest(double a, double smallest)
+{
     return a < smallest;
 }
 
-bool is_largest(double a, double largest) {
+bool is_largest(double a, double largest)
+{
     return a > largest;
 }
 
-double convert_to_m(double a, string unit) {
-    if (unit == "cm") {
+double convert_to_m(double a, string unit)
+{
+    if (unit == "cm")
+    {
         return a / 100;
-    } else if (unit == "m") {
+    }
+    else if (unit == "m")
+    {
         return a;
-    } else if (unit == "ft") {
+    }
+    else if (unit == "ft")
+    {
         return a * 12 * 2.54 / 100;
-    } else {
+    }
+    else
+    {
         // for "in" unit
         return a * 2.54 / 100;
     }
 }
 
-bool is_valid_unit(string unit) {
-    if (unit == "cm") {
+bool is_valid_unit(string unit)
+{
+    if (unit == "cm")
+    {
         return true;
-    } else if (unit == "m") {
+    }
+    else if (unit == "m")
+    {
         return true;
-    } else if (unit == "ft") {
+    }
+    else if (unit == "ft")
+    {
         return true;
-    } else if (unit == "in") {
+    }
+    else if (unit == "in")
+    {
         return true;
-    } else {
+    }
+    else
+    {
         return false;
     }
 }
 
-int main() {
-    double largest = 0; // in m
+int main()
+{
+    double largest = 0;  // in m
     double smallest = 0; // in m
     double a = 0;
     string unit = "";
@@ -44,23 +65,28 @@ int main() {
 
     vector<double> v = {};
 
-    while (cin >> a >> unit) {
-        if (!is_valid_unit(unit)) {
+    while (cin >> a >> unit)
+    {
+        if (!is_valid_unit(unit))
+        {
             simple_error("Not valid unit!");
         }
         double val_m = convert_to_m(a, unit);
-        
+
         // for initialisation of loop
-        if (v.size() == 0) {
+        if (v.size() == 0)
+        {
             smallest = a;
             largest = a;
         }
 
-        if (is_smallest(val_m, smallest)) {
+        if (is_smallest(val_m, smallest))
+        {
             cout << a << unit << " the smallest so far\n";
             smallest = a;
         }
-        if (is_largest(val_m, largest)) {
+        if (is_largest(val_m, largest))
+        {
             cout << a << unit << " the largest so far\n";
             largest = a;
         }
@@ -74,10 +100,11 @@ int main() {
     cout << "Sum (in m): " << sum << '\n';
     cout << "Number of values: " << v.size() << '\n';
     cout << "Values (in m): ";
-    for (int i = 0; i < v.size(); ++i) {
+    for (int i = 0; i < v.size(); ++i)
+    {
         cout << v[i] << " ";
     }
     cout << endl;
-    
+
     return 0;
 }
